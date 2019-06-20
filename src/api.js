@@ -18,7 +18,12 @@
 
 const fanOut = (input, cb) => {
     // TODO: your implementation here.
-    return [];
+    let result = [];
+    for (let i = 0; i < input.length; i++) {
+        result.push(cb(input[i]))
+    };
+    
+    return result;
 };
 
 /*
@@ -28,8 +33,7 @@ const fanOut = (input, cb) => {
           each item in the collection. Funneling down to a single result.
 
  ARGS:  input - input collection
-        fn - function to apply to each item in the collection with
-               args accumulation value and current value
+        fn - function to apply to each item in the collection with args accumulation value and current value
         startValue - start the accumulation with this value
 
  EX:  - funnel([1, 2, 3], add, 0) -->  6;
@@ -43,7 +47,12 @@ const fanOut = (input, cb) => {
 
 const funnel = (input, fn, startValue) => {
     // TODO: your implementation here.
-      return false;
+    let result = 0;
+    for (let i = 0; i < input.length; i++) {
+     fn(startValue + input[i])
+    }
+    return result;
+      // return false;
 };
 
 /*
