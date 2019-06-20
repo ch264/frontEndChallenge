@@ -17,7 +17,7 @@
 */
 
 const fanOut = (input, cb) => {
-    // TODO: your implementation here.
+    // TODO: your implementation here
     let result = [];
     for (let i = 0; i < input.length; i++) {
         result.push(cb(input[i]))
@@ -74,24 +74,15 @@ const funnel = (input, fn, startValue) => {
 
 const distill = (input, fn) => {
     // TODO: your implementation here.
-    let result = [];
+    let disResult = [];
 
     for (let i = 0; i < input.length; i++) {
         const dis = fn(input[i]);
-
-        // if (dis % 2 === 0 || dis % 2 !== 0) {
-        //     result.push(input[i]);
-        // } else if ( dis < 0 ) {
-        //    null;
-        // } else {
-        //    null;
-        // }
-
         if (dis === true) {
-            result.push(input[i]);
+            disResult.push(input[i]);
         }
     }
-    return result;
+    return disResult;
 };
 
 /*
@@ -112,7 +103,12 @@ CAVEATS:
 
 const numberOfCharacters = (input) => {
     // TODO: your implementation here.
-    return 0;
+    //fanout: return a new collection of items
+    // funnel: return result after applying addition to each item
+    //distil: if predict is true, return item
+
+    let result = funnel(input, function(i) { return i; }, '');
+    return result.length;
 };
 
 /*
@@ -134,7 +130,17 @@ const numberOfCharacters = (input) => {
 
 const numberOfSpecialCharacters = (input, c) => {
     // TODO: your implementation here.
-    return 0;
+    let specialResult = [];
+    // call fanout function and give input and callback function..
+    let result = fanOut(input, (x) => {
+        // callback function is the distill function that takes in an input and a function that is applied to all characters int he input
+        let pen = distill(x, (i) => {
+            if(i===c){
+                specialResult.push(i);
+            }
+        })
+    })
+    return specialResult.length;
 };
 
 // EXTREME STRETCH
