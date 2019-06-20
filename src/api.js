@@ -46,13 +46,11 @@ const fanOut = (input, cb) => {
  */
 
 const funnel = (input, fn, startValue) => {
-    // TODO: your implementation here.
-    let result = 0;
+    // TODO: your implementation here.w
     for (let i = 0; i < input.length; i++) {
-     fn(startValue + input[i])
+        var funResult = startValue += input[i];
     }
-    return result;
-      // return false;
+    return funResult;
 };
 
 /*
@@ -76,7 +74,24 @@ const funnel = (input, fn, startValue) => {
 
 const distill = (input, fn) => {
     // TODO: your implementation here.
-    return false;
+    let result = [];
+
+    for (let i = 0; i < input.length; i++) {
+        const dis = fn(input[i]);
+
+        // if (dis % 2 === 0 || dis % 2 !== 0) {
+        //     result.push(input[i]);
+        // } else if ( dis < 0 ) {
+        //    null;
+        // } else {
+        //    null;
+        // }
+
+        if (dis === true) {
+            result.push(input[i]);
+        }
+    }
+    return result;
 };
 
 /*
